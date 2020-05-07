@@ -71,6 +71,9 @@ def dashboard(request):
             else:
                 current_user.userprofile.credits = current_user.userprofile.credits - credit_amount
                 current_user.userprofile.save
+
+                # userprofile.objects.filter(creator=username)
+
                 messages.success(request, 'You have Successfully Credited')
         users = User.objects.all()
         return render(request, 'authenticate/dashboard.html', {'users': users, 'current_user':current_user})

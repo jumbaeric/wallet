@@ -52,7 +52,7 @@
             </div>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <button type="button" class="btn btn-primary">
-                    Credits <span class="badge badge-light">{{user.userprofile.credits}}</span>
+                    <span class="badge badge-light">{{user.userprofile.credits}}</span> Credits in your Wallet
                     <span class="sr-only">Wallet Account</span>
                 </button>
             </div>
@@ -137,7 +137,7 @@
                         <label class="sr-only" for="inlineFormInputName2">Amount</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" name="credit_amount" placeholder="Amount" required>
 
-                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">User</label>
+                        <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref">User</label> -->
                         <select class="custom-select my-1 mr-sm-2" name="username" required>
                             <option selected>User</option>
                             {% for u in users %}
