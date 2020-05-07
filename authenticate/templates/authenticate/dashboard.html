@@ -1,0 +1,161 @@
+{% extends 'authenticate/base_dashboard.html' %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {% load static %}
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="card" style="">
+                <!-- <img src="{% static 'images/pic.JPG' %}" class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <p class="card-title">Hi {{user.username}}</p>
+                </div>
+            </div>
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'dashboard' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg> My Wallet <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg> Deposits <span class="sr-only"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg> Transactions <span class="sr-only"></span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <button type="button" class="btn btn-primary">
+                    Credits <span class="badge badge-light">{{user.userprofile.credits}}</span>
+                    <span class="sr-only">Wallet Account</span>
+                </button>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Credits</h5>
+                                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-muted text-sm">
+                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                                <span class="text-nowrap">Since last week</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Deposits</h5>
+                                    <span class="h2 font-weight-bold mb-0">924</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-muted text-sm">
+                                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                                <span class="text-nowrap">Since yesterday</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Transactions</h5>
+                                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                        <i class="fas fa-percent"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-muted text-sm">
+                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-warning alert-dismissable" role="alert">
+                <button class="closa" data-dismiss="alert"><small><sup>x</sup></small></button> {{ message }}
+            </div>
+            {% endfor %} {% endif %}
+            <h3 class="text-align-center">
+                Transfer Credits
+            </h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <form class="form-inline" method="POST" action="{% url 'dashboard' %}">
+                        {% csrf_token %}
+                        <label class="sr-only" for="inlineFormInputName2">Amount</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="credit_amount" placeholder="Amount" required>
+
+                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">User</label>
+                        <select class="custom-select my-1 mr-sm-2" name="username" required>
+                            <option selected>User</option>
+                            {% for u in users %}
+                                <option value="{{u.username}}">{{u.username}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <div class="form-check mb-2 mr-sm-2">
+                            <input class="form-check-input" type="checkbox" id="inlineFormCheck" required>
+                            <label class="form-check-label" for="inlineFormCheck">
+                            Confirm
+                          </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mb-2">Send</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+        {% endblock %}
